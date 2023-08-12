@@ -65,8 +65,8 @@ jobs:
       env:
         TNAME: MI-R4A
         KERNEL: ${{ inputs.kernel }}
-        MODIFY: $GITHUB_WORKSPACE/modify.sh
-        MODIFY4.4: $GITHUB_WORKSPACE/modify_4.4.sh
+        MODIFY: ${{ github.workspace }}/modify.sh
+        MODIFY4.4: ${{ github.workspace }}/modify_4.4.sh
       run: |
         cd /opt/rt-n56u/trunk
         if [ ! -f configs/templates/$TNAME.config ] ; then
