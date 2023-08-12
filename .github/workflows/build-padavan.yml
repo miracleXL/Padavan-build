@@ -16,7 +16,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     if: github.event.repository.owner.id == github.event.sender.id
 
     steps:
@@ -33,7 +33,7 @@ jobs:
         kmod python3-docutils libc-dev-bin
     - name: Clone source code
       env:
-        KERNEL: 4.4
+        KERNEL: 3.4
       run: |
         if [ $KERNEL = "4.4" ] ; then
         git clone --depth=1 https://github.com/minax007/padavan-4.4.git /opt/rt-n56u
@@ -46,7 +46,7 @@ jobs:
     - name: Build Firmware
       env:
         TNAME: MI-R4A
-        KERNEL: 4.4
+        KERNEL: 3.4
       run: |
         cd /opt/rt-n56u/trunk
         if [ ! -f configs/templates/$TNAME.config ] ; then
