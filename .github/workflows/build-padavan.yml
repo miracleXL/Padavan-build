@@ -11,19 +11,30 @@ on:
   #    - master
 #  schedule:
 #    - cron: 0 8 * * 5
-  workflow_dispatch:
-    inputs:
-      build:
-        description: '若要编译固件，请输入true'
-        required: true
-        default: 'true'
-        type: string
   # watch:
   #   types: [started]
+  workflow_dispatch:
+    inputs:
+      kernel:
+        description: '选择需要编译的版本'
+        required: true
+        type: choice
+        options:
+          - 3.4
+          - 4.4
+      runs_on:
+        description: '选择编译运行环境'
+        required: true
+        type: choice
+        default: 'ubuntu-20.04'
+        options:
+          - 'ubuntu-20.04'
+          - 'ubuntu-22.04'
+          - 'ubuntu-latest'
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ${{ inputs.runs_on }}
     if: github.event.repository.owner.id == github.event.sender.id
 
     steps:
@@ -40,7 +51,7 @@ jobs:
         kmod python3-docutils libc-dev-bin
     - name: Clone source code
       env:
-        KERNEL: 3.4
+        KERNEL: ${{ inputs.kernel }}
       run: |
         if [ $KERNEL = "4.4" ] ; then
         git clone --depth=1 https://github.com/minax007/padavan-4.4.git /opt/rt-n56u
@@ -53,7 +64,7 @@ jobs:
     - name: Build Firmware
       env:
         TNAME: MI-R4A
-        KERNEL: 3.4
+        KERNEL: ${{ inputs.kernel }}
       run: |
         cd /opt/rt-n56u/trunk
         if [ ! -f configs/templates/$TNAME.config ] ; then
