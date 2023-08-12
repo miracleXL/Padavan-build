@@ -1,2 +1,4 @@
 # Padavan-build说明
-现在不需要新建Release了，已经更改了脚本，直接fork，修改好之后，点击右上角的 Star 星星按钮即可开始自动编译（自己点击才会编译）。
+
+fork后修改modify.sh，在Actions中点击Build Padavan中的run workflow，选择合适的版本点击Run workflow编译。
+完成后点击运行完的workflow run，在Artifacts一栏下载
