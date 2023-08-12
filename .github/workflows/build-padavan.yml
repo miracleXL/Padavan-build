@@ -65,6 +65,8 @@ jobs:
       env:
         TNAME: MI-R4A
         KERNEL: ${{ inputs.kernel }}
+        MODIFY: $GITHUB_WORKSPACE/modify.sh
+        MODIFY4.4: $GITHUB_WORKSPACE/modify_4.4.sh
       run: |
         cd /opt/rt-n56u/trunk
         if [ ! -f configs/templates/$TNAME.config ] ; then
@@ -73,11 +75,11 @@ jobs:
         fi
         cp -f configs/templates/$TNAME.config .config
         if [ $KERNEL = "4.4" ] ; then
-        chmod +x modify_4.4.sh
-        modify_4.4.sh
+        chmod +x $MODIFY4.4
+        $MODIFY4.4
         else
-        chmod +x modify.sh
-        modify.sh
+        chmod +x $MODIFY
+        $MODIFY
         fi
         sudo ./clear_tree
         sudo ./build_firmware_modify $TNAME 0
