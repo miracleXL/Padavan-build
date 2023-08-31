@@ -1,4 +1,6 @@
 #!/bin/sh
+#可定义功能参考https://github.com/MeIsReallyBa/rt-n56u/blob/master/trunk/configs/templates/MI-R4A.config
+
 
 ################################################################################################
 #因不同型号配置功能不一样，所以先把配置项删除，如果你自己要添加其他的，也要写上删除这一条，切记！！！
@@ -16,15 +18,21 @@ sed -i '/CONFIG_FIRMWARE_INCLUDE_ALIDDNS/d' .config #删除配置项阿里DDNS
 sed -i '/CONFIG_FIRMWARE_INCLUDE_SMARTDNS/d' .config
 sed -i '/CONFIG_FIRMWARE_INCLUDE_SRELAY/d' .config
 sed -i '/CONFIG_FIRMWARE_INCLUDE_ADGUARDHOME/d' .config #删除配置项ADGUARDHOME
-sed -i '/CONFIG_FIRMWARE_INCLUDE_SMARTDNS=y/d' .config #删除配置项smartdns
+sed -i '/CONFIG_FIRMWARE_INCLUDE_SMARTDNS/d' .config #删除配置项smartdns
+sed -i '/CONFIG_FIRMWARE_INCLUDE_OPENVPN/d' .config #删除配置项openvpn
 sed -i 's/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=n/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=y/g' .config
 ######################################################################
 #以下选项是定义你需要的功能（y=集成,n=忽略），重新写入到.config文件
 ######################################################################
 echo "CONFIG_FIRMWARE_INCLUDE_MENTOHUST=n" >> .config #MENTOHUST
 echo "CONFIG_FIRMWARE_INCLUDE_SCUTCLIENT=n" >> .config #SCUTCLIENT
+echo "CONFIG_FIRMWARE_INCLUDE_SOFTETHERVPN_SERVER=n" >> .config #softether-vpnserver 
+echo "CONFIG_FIRMWARE_INCLUDE_SOFTETHERVPN_CLIENT=n" >> .config #softether-vpnclient 
+echo "CONFIG_FIRMWARE_INCLUDE_SOFTETHERVPN_CMD=n" >> .config #softether-vpncmd
+echo "CONFIG_FIRMWARE_INCLUDE_VLMCSD=y" >> .config #vlmcsd，KMS激活
+echo "CONFIG_FIRMWARE_INCLUDE_SMBD36=n" >> .config #SMB36
 echo "CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS=y" >> .config #SS plus+
-echo "CONFIG_FIRMWARE_INCLUDE_SSOBFS=n" >> .config # simple-obfs混淆插件
+echo "CONFIG_FIRMWARE_INCLUDE_SSOBFS=y" >> .config # simple-obfs混淆插件
 echo "CONFIG_FIRMWARE_INCLUDE_SSSERVER=n" >> .config #SS server
 echo "CONFIG_FIRMWARE_INCLUDE_DNSFORWARDER=n" >> .config #DNSFORWARDER
 echo "CONFIG_FIRMWARE_INCLUDE_ADBYBY=y" >> .config #adbyby plus+
@@ -32,6 +40,7 @@ echo "CONFIG_FIRMWARE_INCLUDE_FRPC=n" >> .config #内网穿透FRPC
 echo "CONFIG_FIRMWARE_INCLUDE_FRPS=n" >> .config #内网穿透FRPS
 echo "CONFIG_FIRMWARE_INCLUDE_TUNSAFE=n" >> .config #TUNSAFE
 echo "CONFIG_FIRMWARE_INCLUDE_ALIDDNS=n" >> .config #阿里DDNS
+echo "CONFIG_FIRMWARE_INCLUDE_DDNSGO=y" >> .config #DDNS-GO ~2M
 echo "CONFIG_FIRMWARE_INCLUDE_SMARTDNS=y" >> .config #smartdns
 echo "CONFIG_FIRMWARE_INCLUDE_SMARTDNSBIN=y" >> .config #smartdns二进制文件
 echo "CONFIG_FIRMWARE_INCLUDE_V2RAY=n" >> .config #集成v2ray执行文件（3.8M左右)，如果不集成，会从网上下载下来执行，不影响正常使用
@@ -44,6 +53,8 @@ echo "CONFIG_FIRMWARE_INCLUDE_SRELAY=n" >> .config #可以不集成
 echo "CONFIG_FIRMWARE_INCLUDE_WYY=n" >> .config #网易云解锁
 echo "CONFIG_FIRMWARE_INCLUDE_WYYBIN=n" >> .config #网易云解锁GO版本执行文件（4M多）注意固件超大小,不集成会自动下载
 echo "CONFIG_FIRMWARE_INCLUDE_ZEROTIER=y" >> .config #zerotier ~1.3M
+echo "CONFIG_FIRMWARE_INCLUDE_WIREGUARD=y" >> .config #wireguard-go
+echo "CONFIG_FIRMWARE_INCLUDE_OPENVPN=n" >> .config #openvpn
 #########################################################################################
 #自定义添加其它功能请参考源码configs/templates/目录下的config文件。按照上面的格式添加即可
 #格式如下：
