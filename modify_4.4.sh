@@ -24,7 +24,7 @@ sed -i 's/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=n/CONFIG_FIRMWARE_INCLUDE_OPENSSL_
 ######################################################################
 echo "CONFIG_FIRMWARE_INCLUDE_MENTOHUST=n" >> .config #MENTOHUST
 echo "CONFIG_FIRMWARE_INCLUDE_SCUTCLIENT=n" >> .config #SCUTCLIENT
-echo "CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS=y" >> .config #SS plus+
+echo "CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS=n" >> .config #SS plus+
 echo "CONFIG_FIRMWARE_INCLUDE_SSOBFS=n" >> .config # simple-obfs混淆插件
 echo "CONFIG_FIRMWARE_INCLUDE_ADBYBY=y" >> .config #adbyby plus+
 echo "CONFIG_FIRMWARE_INCLUDE_DNSFORWARDER=n" >> .config #DNSFORWARDER
@@ -34,9 +34,10 @@ echo "CONFIG_FIRMWARE_INCLUDE_V2RAY=n" >> .config #集成v2ray执行文件
 echo "CONFIG_FIRMWARE_INCLUDE_DDNSTO=n" >> .config #ddnsto  ~0.5M
 echo "CONFIG_FIRMWARE_INCLUDE_ALDRIVER=n" >> .config  #阿里云盘  ~3m
 echo "CONFIG_FIRMWARE_INCLUDE_ZEROTIER=y" >> .config #zerotier ~1.3M
-echo "CONFIG_FIRMWARE_INCLUDE_ALIDDNS=n" >> .config #aliddns
+echo "CONFIG_FIRMWARE_INCLUDE_ALIDDNS=y" >> .config #aliddns
 echo "CONFIG_FIRMWARE_INCLUDE_SMARTDNS=y" >> .config #smartdns
-echo "CONFIG_FIRMWARE_INCLUDE_ADGUARDHOME=n" >> .config
+echo "CONFIG_FIRMWARE_INCLUDE_ADGUARDHOME=y" >> .config
+echo "CONFIG_FIRMWARE_INCLUDE_TTYD=y" >> .config #TTYD
 #########################################################################################
 #自定义添加其它功能请参考源码configs/templates/目录下的config文件。按照上面的格式添加即可
 #格式如下：
